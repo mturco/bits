@@ -1,9 +1,5 @@
 import React from "react";
-import type {
-  ActionFunction,
-  LoaderArgs,
-  MetaFunction,
-} from "@remix-run/node";
+import type { ActionFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
 import { verifyLogin } from "~/models/user.server";
@@ -27,7 +23,7 @@ export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request);
   if (userId) return redirect("/");
   return json({});
-};
+}
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -90,20 +86,17 @@ export default function Login() {
   }, [actionData]);
 
   return (
-    <div className="flex min-h-full flex-col justify-center">
-      <div className="mx-auto w-full max-w-md px-8">
-        <Form method="post" className="space-y-6" noValidate>
+    <div>
+      <div>
+        <Form method="post" noValidate>
           <div>
-            <label className="text-sm font-medium" htmlFor="email">
-              <span className="block text-gray-700">Email Address</span>
+            <label htmlFor="email">
+              <span>Email Address</span>
               {actionData?.errors?.email && (
-                <span className="block pt-1 text-red-700" id="email-error">
-                  {actionData?.errors?.email}
-                </span>
+                <span id="email-error">{actionData?.errors?.email}</span>
               )}
             </label>
             <input
-              className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
               autoComplete="email"
               type="email"
               name="email"
@@ -114,15 +107,11 @@ export default function Login() {
             />
           </div>
           <div>
-            <label className="text-sm font-medium" htmlFor="password">
-              <span className="block text-gray-700">Password</span>
-              <span className="block font-light text-gray-700">
-                Must have at least 6 characters.
-              </span>
+            <label htmlFor="password">
+              <span>Password</span>
+              <span>Must have at least 6 characters.</span>
               {actionData?.errors?.password && (
-                <span className="pt-1 text-red-700" id="password-error">
-                  {actionData?.errors?.password}
-                </span>
+                <span id="password-error">{actionData?.errors?.password}</span>
               )}
             </label>
             <input
@@ -130,42 +119,21 @@ export default function Login() {
               type="password"
               name="password"
               autoComplete=""
-              className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
               aria-invalid={actionData?.errors?.password ? true : undefined}
               aria-describedby="password-error"
               ref={passwordRef}
             />
           </div>
-          <button
-            className="w-full rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-            type="submit"
-          >
-            Log in
-          </button>
+          <button type="submit">Log in</button>
           <input type="hidden" name="redirectTo" value={redirectTo} />
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                id="remember"
-                name="remember"
-                type="checkbox"
-              />
-              <label
-                className="ml-2 block text-sm text-gray-900"
-                htmlFor="remember"
-              >
-                Remember me
-              </label>
+          <div>
+            <div>
+              <input id="remember" name="remember" type="checkbox" />
+              <label htmlFor="remember">Remember me</label>
             </div>
-            <div className="text-center text-sm text-gray-500">
+            <div>
               Don't have an account?{" "}
-              <Link
-                className="text-blue-500 underline"
-                to={{ pathname: "/join" }}
-              >
-                Sign up
-              </Link>
+              <Link to={{ pathname: "/join" }}>Sign up</Link>
             </div>
           </div>
         </Form>

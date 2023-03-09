@@ -10,47 +10,38 @@ type LoaderData = {
   noteListItems: Note[];
 };
 
-export async function loader ({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderArgs) {
   const userId = await requireUserId(request);
   const noteListItems = await getNoteListItems({ userId });
   return json({ noteListItems });
-};
+}
 
 export default function NotesPage() {
   const data = useLoaderData<typeof loader>() as LoaderData;
 
   return (
-    <div className="flex h-full min-h-screen flex-col">
+    <div>
       <Header />
-      <main className="flex h-full bg-white">
-        <div className="h-full w-80 border-r bg-gray-50">
-          <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Note
-          </Link>
+      <main>
+        <div>
+          <Link to="new">+ New Note</Link>
 
           <hr />
 
           {data.noteListItems.length === 0 ? (
-            <p className="p-4">No notes yet</p>
+            <p>No notes yet</p>
           ) : (
             <ol>
               {data.noteListItems.map((note) => (
                 <li key={note.id}>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`
-                    }
-                    to={note.id}
-                  >
-                    📝 {note.title}
-                  </NavLink>
+                  <NavLink to={note.id}>📝 {note.title}</NavLink>
                 </li>
               ))}
             </ol>
           )}
         </div>
 
-        <div className="flex-1 p-6">
+        <div>
           <Outlet />
         </div>
       </main>

@@ -35,32 +35,20 @@ export default function NewNotePage() {
       }}
     >
       <div>
-        <label className="flex w-full flex-col gap-1">
+        <label>
           <span>Title: </span>
-          <input
-            name="title"
-            className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
-          />
+          <input name="title" />
         </label>
       </div>
       <div>
-        <label className="flex w-full flex-col gap-1">
+        <label>
           <span>Body: </span>
-          <textarea
-            name="body"
-            rows={8}
-            className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-lg leading-6"
-          ></textarea>
+          <textarea name="body" rows={8}></textarea>
         </label>
       </div>
 
-      <div className="text-right">
-        <button
-          type="submit"
-          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Save
-        </button>
+      <div>
+        <button type="submit">Save</button>
       </div>
     </Form>
   );
