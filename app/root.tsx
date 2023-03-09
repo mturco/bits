@@ -8,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import modernNormalize from "modern-normalize/modern-normalize.css";
 
 import { getUser } from "./session.server";
 
@@ -16,7 +17,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const links: LinksFunction = () => {
-  return [];
+  return [{ rel: "stylesheet", href: modernNormalize }];
 };
 
 export async function loader({ request }: LoaderArgs) {
