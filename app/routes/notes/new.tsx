@@ -20,7 +20,7 @@ export const action: ActionFunction = async ({ request }) => {
   }
 
   const note = await createNote({ title, body, userId });
-  return redirect(`/notes/${note.id}`);
+  return note ? redirect(`/notes/${note.id}`) : redirect("/notes/");
 };
 
 export default function NewNotePage() {
