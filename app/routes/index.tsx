@@ -106,7 +106,7 @@ export default function Index() {
           placeholder="Type a bit (⌘ + ⏎ to save)"
         ></textarea>
         {actionData?.errors?.content && (
-          <p className="error">{actionData.errors.content}</p>
+          <p className="form-error">{actionData.errors.content}</p>
         )}
       </Form>
 

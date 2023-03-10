@@ -10,6 +10,7 @@ import {
 } from "@remix-run/react";
 import modernNormalize from "modern-normalize/modern-normalize.css";
 import globalStyles from "~/styles/global.css";
+import { Header, links as headerLinks } from "~/components/Header";
 
 import { getUser } from "./session.server";
 
@@ -17,12 +18,11 @@ export const meta: MetaFunction = () => {
   return { title: "Bits" };
 };
 
-export const links: LinksFunction = () => {
-  return [
-    { rel: "stylesheet", href: modernNormalize },
-    { rel: "stylesheet", href: globalStyles },
-  ];
-};
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: modernNormalize },
+  { rel: "stylesheet", href: globalStyles },
+  ...headerLinks(),
+];
 
 export async function loader({ request }: LoaderArgs) {
   return json({
@@ -40,7 +40,10 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Header />
+        <div className="outlet">
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

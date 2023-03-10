@@ -6,11 +6,9 @@ import { verifyLogin } from "~/models/user.server";
 import { createUserSession, getUserId } from "~/session.server";
 import { validateEmail } from "~/utils";
 
-export const meta: MetaFunction = () => {
-  return {
-    title: "Login",
-  };
-};
+export const meta: MetaFunction = () => ({
+  title: "Login",
+});
 
 interface ActionData {
   errors: {
@@ -63,13 +61,13 @@ export const action: ActionFunction = async ({ request }) => {
     request,
     userId: user.id,
     remember: remember === "on" ? true : false,
-    redirectTo: typeof redirectTo === "string" ? redirectTo : "/notes",
+    redirectTo: typeof redirectTo === "string" ? redirectTo : "/",
   });
 };
 
 export default function Login() {
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") ?? "/notes";
+  const redirectTo = searchParams.get("redirectTo") ?? "/";
 
   const actionData = useActionData() as ActionData;
   const emailRef = React.useRef<HTMLInputElement>(null);
@@ -91,9 +89,11 @@ export default function Login() {
         <Form method="post" noValidate>
           <div>
             <label htmlFor="email">
-              <p>Email Address</p>
+              <p className="form-label">Email Address</p>
               {actionData?.errors?.email && (
-                <p id="email-error">{actionData?.errors?.email}</p>
+                <p className="form-error" id="email-error">
+                  {actionData?.errors?.email}
+                </p>
               )}
             </label>
             <input
@@ -108,10 +108,12 @@ export default function Login() {
           </div>
           <div>
             <label htmlFor="password">
-              <p>Password</p>
-              <p>Must have at least 6 characters.</p>
+              <p className="form-label">Password</p>
+              <p className="form-hint">Must have at least 6 characters.</p>
               {actionData?.errors?.password && (
-                <p id="password-error">{actionData?.errors?.password}</p>
+                <p className="form-error" id="password-error">
+                  {actionData?.errors?.password}
+                </p>
               )}
             </label>
             <input
@@ -124,17 +126,19 @@ export default function Login() {
               ref={passwordRef}
             />
           </div>
-          <button type="submit">Log in</button>
+          <button type="submit" style={{ margin: "1rem 0 0.5rem" }}>
+            Log in
+          </button>
           <input type="hidden" name="redirectTo" value={redirectTo} />
           <div>
             <div>
-              <input id="remember" name="remember" type="checkbox" />
+              <input id="remember" name="remember" type="checkbox" />{" "}
               <label htmlFor="remember">Remember me</label>
             </div>
-            <div>
+            <p>
               Don't have an account?{" "}
               <Link to={{ pathname: "/join" }}>Sign up</Link>
-            </div>
+            </p>
           </div>
         </Form>
       </div>
