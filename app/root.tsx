@@ -9,15 +9,19 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import modernNormalize from "modern-normalize/modern-normalize.css";
+import globalStyles from "~/styles/global.css";
 
 import { getUser } from "./session.server";
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { title: "Bits" };
 };
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: modernNormalize }];
+  return [
+    { rel: "stylesheet", href: modernNormalize },
+    { rel: "stylesheet", href: globalStyles },
+  ];
 };
 
 export async function loader({ request }: LoaderArgs) {

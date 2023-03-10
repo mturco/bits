@@ -100,9 +100,9 @@ export default function Join() {
         <Form method="post" noValidate>
           <div>
             <label htmlFor="email">
-              <span>Email Address</span>
+              <p>Email Address</p>
               {actionData?.errors?.email && (
-                <span id="email-error">{actionData?.errors?.email}</span>
+                <p id="email-error">{actionData?.errors?.email}</p>
               )}
             </label>
             <input
@@ -117,10 +117,10 @@ export default function Join() {
           </div>
           <div>
             <label htmlFor="password">
-              <span>Password</span>
-              <span>Must have at least 6 characters.</span>
+              <p>Password</p>
+              <p>Must have at least 6 characters.</p>
               {actionData?.errors?.password && (
-                <span>{actionData?.errors?.password}</span>
+                <p>{actionData?.errors?.password}</p>
               )}
             </label>
             <input

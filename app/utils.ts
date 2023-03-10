@@ -16,7 +16,7 @@ export function isUser(user: User) {
   return user && typeof user === "object";
 }
 
-export function useOptionalUser() {
+export function useOptionalUser(): User | undefined {
   const data = useMatchesData("root");
   if (!data || !isUser(data.user)) {
     return undefined;
@@ -24,7 +24,7 @@ export function useOptionalUser() {
   return data.user;
 }
 
-export function useUser() {
+export function useUser(): User {
   const maybeUser = useOptionalUser();
   if (!maybeUser) {
     throw new Error(

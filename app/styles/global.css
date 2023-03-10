@@ -1,0 +1,23 @@
+:root {
+  --primary: #0d9488;
+}
+
+a {
+  color: var(--primary);
+}
+
+button {
+  background-color: var(--primary);
+  border: 0;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin: 0.125rem 0;
+}

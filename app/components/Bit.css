@@ -1,0 +1,42 @@
+.bit-container {
+}
+
+.bit-actions {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.125rem;
+  gap: 1rem;
+}
+
+.bit-actions button,
+.bit-actions .button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: bold;
+  color: #4b5563;
+  text-decoration: none;
+}
+
+.bit-actions button:hover,
+.bit-actions .button:hover {
+  color: var(--primary);
+}
+
+.bit-created-at {
+  font-size: 0.8125rem;
+  color: rgba(0 0 0 / 0.6);
+  display: block;
+  margin-right: auto;
+}
+
+.bit-content {
+  padding: 0 1.25rem;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 8px;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
