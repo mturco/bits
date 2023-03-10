@@ -1,7 +1,8 @@
-import type {
+import {
   ActionFunction,
   LinksFunction,
   LoaderArgs,
+  redirect,
 } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
@@ -12,6 +13,7 @@ import { Bit, links as bitLinks } from "~/components/Bit";
 import invariant from "tiny-invariant";
 import { getBit } from "~/models/bit.server";
 import styles from "~/styles/bit.css";
+import { getUserId } from "~/session.server";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -35,14 +37,16 @@ export async function loader({ request, params }: LoaderArgs) {
 }
 
 export const action: ActionFunction = async ({ request }) => {
+  const userId = await getUserId(request);
   const formData = await request.formData();
+
   switch (request.method) {
     case "DELETE": {
-      const id = formData.get("id");
+      const id = formData.get("id") as string | null;
       if (id) {
-        await deleteBit(id as BitType["id"]);
+        await deleteBit({ id, profile_id: userId });
       }
-      return null;
+      return redirect("/");
     }
   }
 };
