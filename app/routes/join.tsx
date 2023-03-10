@@ -100,9 +100,11 @@ export default function Join() {
         <Form method="post" noValidate>
           <div>
             <label htmlFor="email">
-              <p>Email Address</p>
+              <p className="form-label">Email Address</p>
               {actionData?.errors?.email && (
-                <p id="email-error">{actionData?.errors?.email}</p>
+                <p className="form-error" id="email-error">
+                  {actionData?.errors?.email}
+                </p>
               )}
             </label>
             <input
@@ -117,10 +119,10 @@ export default function Join() {
           </div>
           <div>
             <label htmlFor="password">
-              <p>Password</p>
-              <p>Must have at least 6 characters.</p>
+              <p className="form-label">Password</p>
+              <p className="form-hint">Must have at least 6 characters.</p>
               {actionData?.errors?.password && (
-                <p>{actionData?.errors?.password}</p>
+                <p className="form-error">{actionData?.errors?.password}</p>
               )}
             </label>
             <input
@@ -133,7 +135,9 @@ export default function Join() {
               ref={passwordRef}
             />
           </div>
-          <button type="submit">Create Account</button>
+          <button type="submit" style={{ margin: "1rem 0 0.5rem" }}>
+            Join
+          </button>
           <input type="hidden" name="redirectTo" value={redirectTo} />
           <div>
             <div>

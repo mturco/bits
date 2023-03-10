@@ -32,11 +32,18 @@ export async function createBit({
     return data;
   }
 
+  console.error(error);
   return null;
 }
 
-export async function deleteBit(id: Bit["id"]) {
-  const { error } = await supabase.from("bits").delete().eq("id", id);
+export async function deleteBit({
+  id,
+  profile_id,
+}: Pick<Bit, "id" | "profile_id">) {
+  const { error } = await supabase
+    .from("bits")
+    .delete()
+    .match({ id, profile_id });
 
   if (!error) {
     return {};

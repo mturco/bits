@@ -59,7 +59,10 @@ export async function verifyLogin(email: string, password: string) {
     password,
   });
 
-  if (error) return undefined;
+  if (error) {
+    console.error(error);
+    return undefined;
+  }
   const profile = await getProfileByEmail(data.user?.email);
 
   return profile;

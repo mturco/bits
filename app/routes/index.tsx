@@ -39,10 +39,11 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export const action: ActionFunction = async ({ request }) => {
+  const userId = await getUserId(request);
   const formData = await request.formData();
+
   switch (request.method) {
     case "POST": {
-      const userId = await getUserId(request);
       const content = formData.get("content");
 
       if (typeof content !== "string" || content.length === 0) {
@@ -57,9 +58,9 @@ export const action: ActionFunction = async ({ request }) => {
     }
 
     case "DELETE": {
-      const id = formData.get("id");
+      const id = formData.get("id") as string | null;
       if (id) {
-        await deleteBit(id as BitType["id"]);
+        await deleteBit({ id, profile_id: userId });
       }
       return null;
     }
