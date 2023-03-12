@@ -1,0 +1,33 @@
+.bit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.bit-form textarea {
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  resize: none;
+  font-size: 0.875rem;
+  box-shadow: inset 0 0 0 2px #e5e7eb;
+  border: 0;
+  line-height: 1.5;
+}
+
+.bit-form .dirty {
+  box-shadow: inset 0 0 0 2px rgba(0 0 0 / 0.5);
+}
+
+.bit-form textarea:focus {
+  outline: 0;
+  box-shadow: inset 0 0 0 2px var(--primary);
+  background-color: #f0fdfa;
+}
+
+.bit-form textarea:focus::placeholder {
+  color: #0f766e;
+}
+
+.bit-form button {
+  margin-left: auto;
+  margin-top: 0.5rem;
+}

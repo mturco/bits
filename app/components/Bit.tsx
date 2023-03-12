@@ -39,6 +39,10 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
           Link
         </Link>
 
+        <Link className="button" to={`/bit/${bit.id}/edit`}>
+          Edit
+        </Link>
+
         <button type="button" onClick={handleDelete}>
           Delete
         </button>

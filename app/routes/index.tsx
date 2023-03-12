@@ -1,9 +1,5 @@
-import {
-  Form,
-  useActionData,
-  useSubmit,
-  useLoaderData,
-} from "@remix-run/react";
+import { useMemo } from "react";
+import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import type {
   ActionFunction,
@@ -16,15 +12,13 @@ import { deleteBit, getAllBits } from "~/models/bit.server";
 import type { Bit as BitType } from "~/models/bit.server";
 import styles from "~/styles/index.css";
 import { Bit, links as bitLinks } from "~/components/Bit";
-import type { ChangeEvent, KeyboardEvent } from "react";
-import { useState } from "react";
-import { useMemo } from "react";
-import { useRef } from "react";
 import { createBit } from "~/models/bit.server";
 import { getUserId } from "~/session.server";
+import { BitForm, links as bitFormLinks } from "~/components/BitForm";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
+  ...bitFormLinks(),
   ...bitLinks(),
 ];
 
@@ -65,15 +59,15 @@ export const action: ActionFunction = async ({ request }) => {
       }
       return null;
     }
+
+    default: {
+      return null;
+    }
   }
 };
 
 export default function Index() {
   const data = useLoaderData<typeof loader>() as LoaderData;
-  const actionData = useActionData();
-  const submit = useSubmit();
-  const form = useRef<HTMLFormElement>(null);
-  const [dirty, setDirty] = useState(false);
 
   const bits = useMemo(
     () =>
@@ -83,34 +77,9 @@ export default function Index() {
     [data]
   );
 
-  function handleChange(evt: ChangeEvent<HTMLTextAreaElement>) {
-    setDirty(evt.target.value.length > 0);
-  }
-
-  function handleKeyDown(evt: KeyboardEvent<HTMLTextAreaElement>) {
-    const textarea = evt.target as HTMLTextAreaElement;
-    if (evt.metaKey && evt.key === "Enter" && textarea.value.trim().length) {
-      submit(form.current, { method: "post" });
-      form.current?.reset();
-      evt.preventDefault();
-    }
-  }
-
   return (
     <main className="index-page">
-      <Form method="post" ref={form} className="bit-form">
-        <textarea
-          autoFocus
-          className={dirty ? "dirty" : ""}
-          name="content"
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          placeholder="Type a bit (⌘ + ⏎ to save)"
-        ></textarea>
-        {actionData?.errors?.content && (
-          <p className="form-error">{actionData.errors.content}</p>
-        )}
-      </Form>
+      <BitForm clearOnSubmit method="post" />
 
       <div className="bits-list">
         {bits?.length ? (
