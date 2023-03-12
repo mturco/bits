@@ -2,8 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { Form, useActionData, useSubmit } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 import styles from "./BitForm.css";
+import { Button, links as buttonLinks } from "./Button";
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+  ...buttonLinks(),
+];
 
 interface BitFormProps {
   action?: string;
@@ -84,7 +88,7 @@ export const BitForm: React.FC<BitFormProps> = ({
       {actionData?.errors?.content && (
         <p className="form-error">{actionData.errors.content}</p>
       )}
-      <button type="submit">Save</button>
+      <Button type="submit">Save</Button>
     </Form>
   );
 };
