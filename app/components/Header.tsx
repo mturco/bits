@@ -20,13 +20,13 @@ export const Header: React.FC<HeaderProps> = () => {
           <span className="user-email">{user.email}</span>
           <Form action="/logout" method="post">
             <button className="button" type="submit">
-              logout
+              Logout
             </button>
           </Form>
         </>
       ) : (
         <Link className="button" to="/login">
-          login
+          Login
         </Link>
       )}
     </header>

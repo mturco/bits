@@ -36,11 +36,11 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
         </time>
 
         <Link className="button" to={`/bit/${bit.id}`}>
-          link
+          Link
         </Link>
 
         <button type="button" onClick={handleDelete}>
-          delete
+          Delete
         </button>
       </div>
       <div className="bit-content">
