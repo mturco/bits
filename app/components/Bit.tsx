@@ -48,7 +48,7 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
         </button>
       </div>
       <div className="bit-content">
-        <Markdown>{bit.content}</Markdown>
+        <Markdown breaks gfm value={bit.content} />
       </div>
     </article>
   );

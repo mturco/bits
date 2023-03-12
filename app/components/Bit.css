@@ -40,3 +40,80 @@
   word-wrap: break-word;
   line-height: 1.5;
 }
+
+.bit-content :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-top: 1rem;
+}
+
+.bit-content h1 {
+  font-size: 2em;
+  margin: 1em 0 0.75em;
+}
+
+.bit-content h2 {
+  font-size: 1.5em;
+  margin: 1em 0 0.5em;
+}
+
+.bit-content h3 {
+  font-size: 1.25em;
+  margin: 1.25em 0 0.75em;
+}
+
+.bit-content h4 {
+  font-size: 1.125em;
+  margin: 1.5em 0 0.75em;
+}
+
+.bit-content h5,
+.bit-content h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 2em 0 1em;
+}
+
+.bit-content h5 {
+  font-size: 0.875em;
+}
+
+.bit-content h6 {
+  font-size: 0.8125em;
+}
+
+.bit-content table {
+  border-collapse: collapse;
+  margin: 0 1rem;
+}
+
+.bit-content thead {
+  border-bottom: 2px solid rgba(0 0 0 / 0.15);
+}
+
+.bit-content :is(th, td) {
+  text-align: left;
+  padding: 0.25rem 1rem;
+}
+
+.bit-content th {
+  color: rgba(0 0 0 / 0.6);
+}
+
+.bit-content [align="center"] {
+  text-align: center;
+}
+
+.bit-content [align="right"] {
+  text-align: right;
+}
+
+.bit-content td {
+  border-top: 1px solid rgba(0 0 0 / 0.15);
+}
+
+.bit-content :is(th, td):first-child {
+  padding-left: 0;
+}
+
+.bit-content :is(th, td):last-child {
+  padding-right: 0;
+}

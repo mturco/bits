@@ -77,6 +77,7 @@ export const BitForm: React.FC<BitFormProps> = ({
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         placeholder="Type a bit (⌘ + ⏎ to save)"
+        rows={1}
         ref={textarea}
         value={content}
       ></textarea>
