@@ -31,11 +31,14 @@ export const Header: React.FC<HeaderProps> = () => {
       {user && (
         <>
           <Search />
-          <UserMenuButton onAction={handleMenuAction}>
-            <Section title={user.email}>
-              <Item key="logout">Logout</Item>
-            </Section>
-          </UserMenuButton>
+
+          <div className="justify-self-end">
+            <UserMenuButton onAction={handleMenuAction}>
+              <Section title={user.email}>
+                <Item key="logout">Logout</Item>
+              </Section>
+            </UserMenuButton>
+          </div>
         </>
       )}
     </header>

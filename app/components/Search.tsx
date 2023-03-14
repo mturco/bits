@@ -7,6 +7,8 @@ import { useRef, useState } from "react";
 import { useFetcher } from "@remix-run/react";
 import type { Bit as BitType } from "~/models/bit.server";
 import { Bit } from "./Bit";
+import Icon from "@mdi/react";
+import { mdiMagnify } from "@mdi/js";
 
 interface SearchProps extends AriaSearchFieldProps {}
 
@@ -24,16 +26,21 @@ export const Search: React.FC<SearchProps> = (props) => {
 
   return (
     <>
-      <div>
+      <div className="px-4 relative">
         <VisuallyHidden>
           <label {...labelProps}>Search bits</label>
         </VisuallyHidden>
         <input
           {...inputProps}
-          className="w-full h-10 bg-gray-200 rounded-full px-5 focus:outline-teal-600 outline-2 focus:bg-teal-50"
+          className="w-full h-10 bg-gray-200 rounded-full pl-11 pr-5 focus:outline-teal-600 outline-2 focus:bg-teal-50"
           onChange={handleChange}
           value={query}
           ref={ref}
+        />
+        <Icon
+          className="absolute top-1/2 -translate-y-1/2 left-7 text-teal-600"
+          path={mdiMagnify}
+          size={1}
         />
       </div>
       {query.length > 0 ? (
@@ -41,7 +48,7 @@ export const Search: React.FC<SearchProps> = (props) => {
           <div className="fixed inset-0 top-16 z-10 bg-white overflow-auto px-4 py-16">
             <div
               className="mx-auto flex flex-col gap-8"
-              style={{ maxWidth: "45rem" }}
+              style={{ maxWidth: "var(--page-width)" }}
             >
               {!fetcher.data ? (
                 <p className="text-center">Searching...</p>
