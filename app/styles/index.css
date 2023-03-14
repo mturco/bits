@@ -1,11 +1,11 @@
 .index-page {
   margin: 0 auto;
-  padding: 4rem 1rem 6rem;
+  padding: 4rem 0 8rem;
   max-width: var(--page-width);
 }
 
 .bits-list {
-  margin-top: 4rem;
+  margin-top: 6rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;

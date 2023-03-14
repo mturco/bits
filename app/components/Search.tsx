@@ -3,47 +3,66 @@ import type { AriaSearchFieldProps } from "react-aria";
 import { Overlay } from "react-aria";
 import { VisuallyHidden } from "react-aria";
 import { useSearchField } from "react-aria";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useFetcher } from "@remix-run/react";
 import type { Bit as BitType } from "~/models/bit.server";
 import { Bit } from "./Bit";
 import Icon from "@mdi/react";
-import { mdiMagnify } from "@mdi/js";
+import { mdiClose, mdiMagnify } from "@mdi/js";
+import type { LinksFunction } from "@remix-run/node";
+import styles from "./Search.css";
+import { Button } from "./Button";
+
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 interface SearchProps extends AriaSearchFieldProps {}
 
 export const Search: React.FC<SearchProps> = (props) => {
-  const [query, setQuery] = useState("");
   const state = useSearchFieldState(props);
   const ref = useRef<HTMLInputElement>(null);
-  const { labelProps, inputProps } = useSearchField(props, state, ref);
+  const { labelProps, inputProps, clearButtonProps } = useSearchField(
+    props,
+    state,
+    ref
+  );
   const fetcher = useFetcher<BitType[]>();
 
   function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
-    setQuery(evt.target.value);
+    state.setValue(evt.target.value);
     fetcher.load(`/bit/search?query=${evt.target.value}`);
   }
 
   return (
     <>
-      <div className="px-4 relative">
+      <div className="relative">
         <VisuallyHidden>
           <label {...labelProps}>Search bits</label>
         </VisuallyHidden>
         <input
           {...inputProps}
-          className="w-full h-10 bg-gray-200 rounded-full pl-11 pr-5 focus:outline-teal-600 outline-2 focus:bg-teal-50"
+          className="search-input w-full h-10 bg-gray-200 rounded-full pl-12 pr-5 focus:outline-teal-600 outline-2 focus:bg-teal-50 appearance-none"
           onChange={handleChange}
-          value={query}
+          value={state.value}
           ref={ref}
         />
         <Icon
-          className="absolute top-1/2 -translate-y-1/2 left-7 text-teal-600"
+          aria-hidden="true"
+          className="absolute top-1/2 -translate-y-1/2 left-4 text-teal-600 pointer-events-none"
           path={mdiMagnify}
           size={1}
         />
+        {state.value && (
+          <Button
+            aria-label="Clear search"
+            noStyling
+            className="absolute top-1/2 -translate-y-1/2 text-gray-500 right-4"
+            {...clearButtonProps}
+          >
+            <Icon path={mdiClose} size={1} />
+          </Button>
+        )}
       </div>
-      {query.length > 0 ? (
+      {state.value.length > 0 ? (
         <Overlay>
           <div className="fixed inset-0 top-16 z-10 bg-white overflow-auto px-4 py-16">
             <div

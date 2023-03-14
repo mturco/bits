@@ -3,10 +3,13 @@ import { Link, useSubmit } from "@remix-run/react";
 import { useOptionalUser } from "~/utils";
 import { UserMenuButton } from "./UserMenuButton";
 import { Item, Section } from "react-stately";
-import { Search } from "./Search";
+import { Search, links as searchLinks } from "./Search";
 import styles from "./Header.css";
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: styles },
+  ...searchLinks(),
+];
 
 interface HeaderProps {}
 
