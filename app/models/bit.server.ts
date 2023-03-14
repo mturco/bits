@@ -13,6 +13,7 @@ export async function getAllBits(
   const { data } = await supabase
     .from("bits")
     .select("id, created_at, content, profile_id")
+    .order("created_at", { ascending: false })
     .eq("profile_id", userId);
 
   return data;
@@ -93,10 +94,12 @@ export async function getBitsMatching(
   query: string,
   userId: Bit["profile_id"]
 ): Promise<Bit[] | null> {
-  const { data, error } = await supabase.rpc("search_bits", {
-    search_query: query.toLowerCase(),
-    user_id: userId,
-  });
+  const { data, error } = await supabase
+    .rpc("search_bits", {
+      search_query: query.toLowerCase(),
+      user_id: userId,
+    })
+    .order("created_at", { ascending: false });
 
   if (error) {
     console.error(error);

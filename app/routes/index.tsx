@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import type {
@@ -6,7 +5,6 @@ import type {
   LoaderFunction,
   LinksFunction,
 } from "@remix-run/node";
-import { compareDesc, parseISO } from "date-fns";
 import { requireUserId } from "~/session.server";
 import { deleteBit, getAllBits } from "~/models/bit.server";
 import type { Bit as BitType } from "~/models/bit.server";
@@ -69,21 +67,13 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Index() {
   const data = useLoaderData<typeof loader>() as LoaderData;
 
-  const bits = useMemo(
-    () =>
-      data.bits?.sort((a, b) =>
-        compareDesc(parseISO(a.created_at), parseISO(b.created_at))
-      ),
-    [data]
-  );
-
   return (
     <main className="index-page">
       <BitForm clearOnSubmit method="post" />
 
       <div className="bits-list">
-        {bits?.length ? (
-          bits.map((bit) => <Bit bit={bit} key={bit.id} />)
+        {data.bits?.length ? (
+          data.bits.map((bit) => <Bit bit={bit} key={bit.id} />)
         ) : (
           <p>No bits yet!</p>
         )}
