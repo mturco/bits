@@ -13,9 +13,9 @@ interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, forwardedRef) => {
+  ({ noStyling, ...props }, forwardedRef) => {
     const mergedProps = mergeProps(
-      { className: props.noStyling ? "" : "button" },
+      { className: noStyling ? "" : "button" },
       props
     );
     const fallbackRef = useRef<HTMLButtonElement>(null);

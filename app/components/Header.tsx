@@ -3,6 +3,7 @@ import { Link, useSubmit } from "@remix-run/react";
 import { useOptionalUser } from "~/utils";
 import { UserMenuButton } from "./UserMenuButton";
 import { Item, Section } from "react-stately";
+import { Search } from "./Search";
 import styles from "./Header.css";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
@@ -28,11 +29,14 @@ export const Header: React.FC<HeaderProps> = () => {
         Bits
       </Link>
       {user && (
-        <UserMenuButton onAction={handleMenuAction}>
-          <Section title={user.email}>
-            <Item key="logout">Logout</Item>
-          </Section>
-        </UserMenuButton>
+        <>
+          <Search />
+          <UserMenuButton onAction={handleMenuAction}>
+            <Section title={user.email}>
+              <Item key="logout">Logout</Item>
+            </Section>
+          </UserMenuButton>
+        </>
       )}
     </header>
   );
