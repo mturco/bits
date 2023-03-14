@@ -16,19 +16,13 @@ export function UserMenuItem<T>({ item, state }: UserMenuItemProps<T>) {
     ref
   );
 
+  const focus = isFocused ? "bg-teal-600 text-white" : "text-gray-900";
+
   return (
     <li
       {...menuItemProps}
       ref={ref}
-      style={{
-        background: isFocused ? "gray" : "transparent",
-        color: isDisabled ? "gray" : isFocused ? "white" : "black",
-        padding: "2px 5px",
-        outline: "none",
-        cursor: "default",
-        display: "flex",
-        justifyContent: "space-between",
-      }}
+      className={`${focus} text-sm cursor-default select-none relative mx-1 rounded py-1 px-2 focus:outline-none`}
     >
       {item.rendered}
       {isSelected && <span aria-hidden="true">✅</span>}

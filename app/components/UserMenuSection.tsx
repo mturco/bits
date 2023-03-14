@@ -26,20 +26,14 @@ export function UserMenuSection<T>({
       {section.key !== state.collection.getFirstKey() && (
         <li
           {...separatorProps}
-          style={{
-            borderTop: "1px solid gray",
-            margin: "2px 5px",
-          }}
+          className="border-t border-gray-300 mx-2 mt-1 mb-1"
         />
       )}
       <li {...itemProps}>
         {section.rendered && (
           <span
             {...headingProps}
-            style={{
-              fontStyle: "italic",
-              padding: "2px 5px",
-            }}
+            className="text-sm text-gray-500 block select-none mx-1 my-0.5 px-2"
           >
             {section.rendered}
           </span>

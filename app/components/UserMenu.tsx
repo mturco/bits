@@ -14,12 +14,7 @@ export function UserMenu<T extends object>(props: AriaMenuProps<T>) {
     <ul
       {...menuProps}
       ref={ref}
-      style={{
-        margin: 0,
-        padding: 0,
-        listStyle: "none",
-        width: 150,
-      }}
+      className="pt-1 pb-1 shadow-xs rounded-md min-w-[200px] focus:outline-none"
     >
       {[...state.collection].map((item) =>
         item.type === "section" ? (
