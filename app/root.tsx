@@ -10,6 +10,7 @@ import {
 } from "@remix-run/react";
 import modernNormalize from "modern-normalize/modern-normalize.css";
 import globalStyles from "~/styles/global.css";
+import tailwind from "~/tailwind.css";
 import { Header, links as headerLinks } from "~/components/Header";
 
 import { getUser } from "./session.server";
@@ -20,6 +21,7 @@ export const meta: MetaFunction = () => {
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: modernNormalize },
+  { rel: "stylesheet", href: tailwind },
   { rel: "stylesheet", href: globalStyles },
   ...headerLinks(),
 ];

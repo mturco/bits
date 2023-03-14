@@ -27,6 +27,7 @@ export function UserMenuButton<T extends object>(
       <Button
         {...menuTriggerProps}
         className="user-menu-button"
+        noStyling
         ref={buttonRef}
       >
         <Icon path={mdiAccountCircle} size={1} />

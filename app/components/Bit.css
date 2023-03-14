@@ -41,6 +41,10 @@
   line-height: 1.5;
 }
 
+.bit-content p {
+  margin: 1em 0;
+}
+
 .bit-content :is(h1, h2, h3, h4, h5, h6):first-child {
   margin-top: 1rem;
 }
