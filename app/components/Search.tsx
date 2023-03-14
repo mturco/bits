@@ -3,7 +3,7 @@ import type { AriaSearchFieldProps } from "react-aria";
 import { Overlay } from "react-aria";
 import { VisuallyHidden } from "react-aria";
 import { useSearchField } from "react-aria";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useFetcher } from "@remix-run/react";
 import type { Bit as BitType } from "~/models/bit.server";
 import { Bit } from "./Bit";
@@ -36,22 +36,24 @@ export const Search: React.FC<SearchProps> = (props) => {
           ref={ref}
         />
       </div>
-      {query.length > 0 && fetcher.type === "done" && (
+      {query.length > 0 ? (
         <Overlay>
           <div className="fixed inset-0 top-16 z-10 bg-white overflow-auto px-4 py-16">
             <div
               className="mx-auto flex flex-col gap-8"
               style={{ maxWidth: "45rem" }}
             >
-              {fetcher.data.length > 0 ? (
-                fetcher.data.map((bit) => <Bit bit={bit} key={bit.id} />)
-              ) : (
+              {!fetcher.data ? (
+                <p className="text-center">Searching...</p>
+              ) : !fetcher.data.length ? (
                 <p className="text-center">No matching bits.</p>
+              ) : (
+                fetcher.data.map((bit) => <Bit bit={bit} key={bit.id} />)
               )}
             </div>
           </div>
         </Overlay>
-      )}
+      ) : null}
     </>
   );
 };

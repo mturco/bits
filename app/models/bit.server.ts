@@ -89,12 +89,14 @@ export async function getBit({
   return null;
 }
 
-export async function getBitsMatching(query: string): Promise<Bit[] | null> {
-  const { data, error } = await supabase
-    // .from("bits")
-    // .select("id, created_at, content, profile_id")
-    // .textSearch("content", query, { config: "english", type: "websearch" });
-    .rpc("search_bits", { search_query: query.toLowerCase() });
+export async function getBitsMatching(
+  query: string,
+  userId: Bit["profile_id"]
+): Promise<Bit[] | null> {
+  const { data, error } = await supabase.rpc("search_bits", {
+    search_query: query.toLowerCase(),
+    user_id: userId,
+  });
 
   if (error) {
     console.error(error);
