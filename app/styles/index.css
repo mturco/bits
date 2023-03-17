@@ -1,13 +1,33 @@
 .index-page {
   margin: 0 auto;
-  padding: 4rem 0 8rem;
+  padding: 1rem 0 2rem;
   max-width: var(--page-width);
 }
 
 .bits-list {
-  margin-top: 6rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   font-size: 0.875rem;
+}
+
+@media screen and (min-width: 48rem) {
+  .index-page {
+    padding: 2rem 0 3rem;
+  }
+
+  .bits-list {
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .index-page {
+    padding: 4rem 0 8rem;
+  }
+
+  .bits-list {
+    margin-top: 6rem;
+  }
 }

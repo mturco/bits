@@ -1,5 +1,17 @@
 .edit-bit-page {
   margin: 0 auto;
-  padding: 6rem 0 8rem;
+  padding: 1rem 0 2rem;
   max-width: var(--page-width);
+}
+
+@media screen and (min-width: 48rem) {
+  .edit-bit-page {
+    padding: 2rem 0 3rem;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .edit-bit-page {
+    padding: 4rem 0 8rem;
+  }
 }
