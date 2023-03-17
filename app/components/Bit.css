@@ -126,9 +126,16 @@
   padding-right: 0;
 }
 
-.bit-content ul {
+.bit-content :is(ol, ul) {
   margin: 1em 0;
   padding-left: 2em;
+}
+
+.bit-content ol {
+  list-style-type: decimal;
+}
+
+.bit-content ul {
   list-style-type: disc;
 }
 
