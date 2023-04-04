@@ -26,14 +26,14 @@ export function UserMenuSection<T>({
       {section.key !== state.collection.getFirstKey() && (
         <li
           {...separatorProps}
-          className="border-t border-gray-300 mx-2 mt-1 mb-1"
+          className="mx-2 mt-1 mb-1 border-t border-ayu-300"
         />
       )}
       <li {...itemProps}>
         {section.rendered && (
           <span
             {...headingProps}
-            className="text-sm text-gray-500 block select-none mx-1 my-0.5 px-2"
+            className="mx-1 my-0.5 block select-none px-2 text-sm text-ayu-500 dark:text-ayu-300"
           >
             {section.rendered}
           </span>

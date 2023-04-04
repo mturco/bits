@@ -18,7 +18,7 @@ export function FormField({
     <label className={`${flexClasses} flex-col gap-1`}>
       <p className="font-medium">{label}</p>
       {children}
-      {hint ? <p className="text-sm text-gray-500">{hint}</p> : null}
+      {hint ? <p className="text-sm text-ayu-500">{hint}</p> : null}
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
     </label>
   );

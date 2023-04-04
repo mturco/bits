@@ -61,7 +61,7 @@ export default function Index() {
     <PageContainer>
       <BitForm clearOnSubmit method="post" />
 
-      <div className="mt-8 flex flex-col gap-8 md:mt-16 lg:mt-24">
+      <div className="mt-8 flex flex-col gap-10 md:mt-16 lg:mt-24">
         {data.bits?.length ? (
           data.bits.map((bit) => <Bit bit={bit} key={bit.id} />)
         ) : (

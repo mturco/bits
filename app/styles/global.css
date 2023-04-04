@@ -4,10 +4,13 @@
 
 html {
   font-size: 16px;
-  color: #2d2d2d;
 }
 
 html,
 body {
   min-height: 100vh;
+}
+
+body {
+  @apply bg-ayu-50 text-ayu-900 dark:bg-ayu-900 dark:text-ayu-100;
 }

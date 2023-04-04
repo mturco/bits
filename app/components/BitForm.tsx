@@ -67,7 +67,7 @@ export const BitForm: React.FC<BitFormProps> = ({
     >
       <textarea
         autoFocus
-        className="resize-none rounded-lg py-4 px-5 text-sm ring-2 ring-inset ring-gray-300 focus:bg-puerto-rico-50 focus:outline-none focus:ring-puerto-rico-600 focus:placeholder:text-puerto-rico-600"
+        className="resize-none rounded-lg bg-transparent py-4 px-5 text-sm outline-none ring-2 ring-inset ring-ayu-300 focus:bg-puerto-rico-50 focus:ring-puerto-rico-600 focus:placeholder:text-puerto-rico-500 dark:ring-ayu-700 dark:focus:bg-puerto-rico-600/10 dark:focus:ring-puerto-rico-400"
         name="content"
         onChange={handleChange}
         onKeyDown={handleKeyDown}

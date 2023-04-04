@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = () => {
   }
 
   return (
-    <header className="sticky top-0 grid h-16 grid-cols-header items-center justify-between gap-4 border-t-4 border-puerto-rico-600 bg-white px-4 text-sm">
+    <header className="sticky top-0 grid h-16 grid-cols-header items-center justify-between gap-4 border-b border-ayu-200/95 bg-ayu-100/95 px-4 text-sm dark:border-ayu-700/95 dark:bg-ayu-800/95">
       <Link to="/" className="mr-auto font-mono text-xl font-bold">
         Bits
       </Link>

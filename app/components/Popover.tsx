@@ -30,7 +30,7 @@ export const Popover: React.FC<PopoverProps> = ({
       <div
         {...popoverProps}
         ref={popoverRef}
-        className="z-10 shadow-lg border border-gray-300 bg-white rounded-md"
+        className="z-10 rounded-md bg-white shadow-lg ring-1 ring-ayu-900/5 dark:bg-ayu-800"
       >
         <DismissButton onDismiss={state.close} />
         {children}
