@@ -23,7 +23,7 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
     <article key={bit.id}>
       <div className="mb-0.5 flex items-center gap-4">
         <RemixLink
-          className="mr-auto text-sm text-ayu-500 outline-puerto-rico-300 hover:underline dark:text-ayu-400"
+          className="mr-auto text-sm text-ayu-500 outline-teal-300 hover:underline dark:text-ayu-400"
           to={`/bit/${bit.id}`}
         >
           <time
@@ -44,7 +44,7 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
         </Link>
 
         <button
-          className="text-sm font-medium text-puerto-rico-600 outline-puerto-rico-300 hover:underline dark:text-puerto-rico-400"
+          className="text-sm font-medium text-teal-700 outline-teal-300 hover:underline dark:text-teal-400"
           type="button"
           onClick={handleDelete}
         >

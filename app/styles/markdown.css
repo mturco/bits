@@ -53,7 +53,7 @@
 
 .md-content table {
   border-collapse: collapse;
-  margin: 0 1rem;
+  margin: 0.75rem 1rem 1rem;
 }
 
 .md-content thead {
@@ -107,7 +107,7 @@
 }
 
 .md-content a {
-  @apply text-puerto-rico-600 outline-puerto-rico-300 dark:text-puerto-rico-400;
+  @apply font-medium text-teal-700 outline-teal-300 dark:text-teal-400;
 }
 
 .md-content a:hover {

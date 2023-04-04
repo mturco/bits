@@ -36,14 +36,14 @@ export const Search: React.FC<SearchProps> = (props) => {
         </VisuallyHidden>
         <input
           {...inputProps}
-          className="search-input h-10 w-full appearance-none rounded-full bg-transparent pl-12 pr-5 outline-none ring-2 ring-inset ring-ayu-300 focus:bg-puerto-rico-50 focus:ring-puerto-rico-600 dark:ring-ayu-700 dark:focus:bg-puerto-rico-600/10 dark:focus:ring-puerto-rico-400"
+          className="search-input h-10 w-full appearance-none rounded-full bg-transparent pl-12 pr-5 outline-none ring-2 ring-inset ring-ayu-300 focus:bg-teal-50 focus:ring-teal-600 dark:ring-ayu-700 dark:focus:bg-teal-600/10 dark:focus:ring-teal-400"
           onChange={handleChange}
           value={state.value}
           ref={ref}
         />
         <Icon
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-puerto-rico-600"
+          className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-teal-600 dark:text-teal-400"
           path={mdiMagnify}
           size={1}
         />

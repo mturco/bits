@@ -1,9 +1,8 @@
-import { useSubmit } from "@remix-run/react";
+import { Link, useSubmit } from "@remix-run/react";
 import { useOptionalUser } from "~/utils";
 import { UserMenuButton } from "./UserMenuButton";
 import { Item, Section } from "react-stately";
 import { Search } from "./Search";
-import { Link } from "./Link";
 
 interface HeaderProps {}
 
@@ -22,7 +21,10 @@ export const Header: React.FC<HeaderProps> = () => {
 
   return (
     <header className="sticky top-0 grid h-16 grid-cols-header items-center justify-between gap-4 border-b border-ayu-200/95 bg-ayu-100/95 px-4 text-sm dark:border-ayu-700/95 dark:bg-ayu-800/95">
-      <Link to="/" className="mr-auto font-mono text-xl font-bold">
+      <Link
+        to="/"
+        className="mr-auto font-mono text-xl font-bold text-teal-600 outline-teal-400 dark:text-teal-400"
+      >
         Bits
       </Link>
       {user && (

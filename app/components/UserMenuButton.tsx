@@ -26,7 +26,7 @@ export function UserMenuButton<T extends object>(
     <>
       <Button
         {...menuTriggerProps}
-        className="flex outline-puerto-rico-300"
+        className="flex outline-teal-300"
         noStyling
         ref={buttonRef}
       >
