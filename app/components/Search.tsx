@@ -9,11 +9,7 @@ import type { Bit as BitType } from "~/models/bit.server";
 import { Bit } from "./Bit";
 import Icon from "@mdi/react";
 import { mdiClose, mdiMagnify } from "@mdi/js";
-import type { LinksFunction } from "@remix-run/node";
-import styles from "./Search.css";
 import { Button } from "./Button";
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 interface SearchProps extends AriaSearchFieldProps {}
 
@@ -40,14 +36,14 @@ export const Search: React.FC<SearchProps> = (props) => {
         </VisuallyHidden>
         <input
           {...inputProps}
-          className="search-input w-full h-10 bg-gray-200 rounded-full pl-12 pr-5 focus:outline-teal-600 outline-2 focus:bg-teal-50 appearance-none"
+          className="search-input h-10 w-full appearance-none rounded-full bg-gray-100 pl-12 pr-5 outline-none ring-2 ring-inset ring-gray-300 focus:bg-teal-50 focus:ring-teal-600"
           onChange={handleChange}
           value={state.value}
           ref={ref}
         />
         <Icon
           aria-hidden="true"
-          className="absolute top-1/2 -translate-y-1/2 left-4 text-teal-600 pointer-events-none"
+          className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-teal-600"
           path={mdiMagnify}
           size={1}
         />
@@ -55,7 +51,7 @@ export const Search: React.FC<SearchProps> = (props) => {
           <Button
             aria-label="Clear search"
             noStyling
-            className="absolute top-1/2 -translate-y-1/2 text-gray-500 right-4"
+            className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-500"
             {...clearButtonProps}
           >
             <Icon path={mdiClose} size={1} />
@@ -64,7 +60,7 @@ export const Search: React.FC<SearchProps> = (props) => {
       </div>
       {state.value.length > 0 ? (
         <Overlay>
-          <div className="fixed inset-0 top-16 z-10 bg-white overflow-auto px-4 py-16">
+          <div className="fixed inset-0 top-16 z-10 overflow-auto bg-white px-4 py-16">
             <div
               className="mx-auto flex flex-col gap-8"
               style={{ maxWidth: "var(--page-width)" }}

@@ -24,7 +24,12 @@ export function UserMenuButton<T extends object>(
 
   return (
     <>
-      <Button {...menuTriggerProps} className="flex" noStyling ref={buttonRef}>
+      <Button
+        {...menuTriggerProps}
+        className="flex outline-puerto-rico-300"
+        noStyling
+        ref={buttonRef}
+      >
         <Icon path={mdiAccountCircle} size={1} />
       </Button>
       {state.isOpen && (

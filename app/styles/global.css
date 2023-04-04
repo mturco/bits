@@ -1,5 +1,4 @@
 :root {
-  --primary: #0d9488;
   --page-width: 45rem;
 }
 
@@ -8,28 +7,7 @@ html {
   color: #2d2d2d;
 }
 
-a {
-  color: var(--primary);
-}
-
-.form-label {
-  margin: 1rem 0 0;
-}
-
-.form-error,
-.form-hint {
-  font-size: 0.875rem;
-  margin: 0.125rem 0;
-}
-
-.form-error {
-  color: #ef4444;
-}
-
-.form-hint {
-  color: rgba(0 0 0 / 0.5);
-}
-
-.outlet {
-  padding: 1rem;
+html,
+body {
+  min-height: 100vh;
 }

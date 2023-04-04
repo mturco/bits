@@ -1,10 +1,14 @@
 import type { ActionFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, Link, useActionData, useSearchParams } from "@remix-run/react";
+import { Form, useActionData, useSearchParams } from "@remix-run/react";
 import { createUserSession, getUserId } from "~/session.server";
 import { createUser, getProfileByEmail } from "~/models/user.server";
 import { validateEmail } from "~/utils";
 import * as React from "react";
+import { FormField } from "~/components/FormField";
+import { Button } from "~/components/Button";
+import { Input } from "~/components/Input";
+import { Link } from "~/components/Link";
 
 export const meta: MetaFunction = () => {
   return {
@@ -95,65 +99,51 @@ export default function Join() {
   }, [actionData]);
 
   return (
-    <div>
-      <div>
-        <Form method="post" noValidate>
-          <div>
-            <label htmlFor="email">
-              <p className="form-label">Email Address</p>
-              {actionData?.errors?.email && (
-                <p className="form-error" id="email-error">
-                  {actionData?.errors?.email}
-                </p>
-              )}
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              aria-invalid={actionData?.errors?.email ? true : undefined}
-              aria-describedby="email-error"
-              ref={emailRef}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">
-              <p className="form-label">Password</p>
-              <p className="form-hint">Must have at least 6 characters.</p>
-              {actionData?.errors?.password && (
-                <p className="form-error">{actionData?.errors?.password}</p>
-              )}
-            </label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              autoComplete="new-password"
-              aria-invalid={actionData?.errors?.password ? true : undefined}
-              aria-describedby="password-error"
-              ref={passwordRef}
-            />
-          </div>
-          <button type="submit" style={{ margin: "1rem 0 0.5rem" }}>
-            Join
-          </button>
-          <input type="hidden" name="redirectTo" value={redirectTo} />
-          <div>
-            <div>
-              Already have an account?{" "}
-              <Link
-                to={{
-                  pathname: "/login",
-                  search: searchParams.toString(),
-                }}
-              >
-                Log in
-              </Link>
-            </div>
-          </div>
-        </Form>
-      </div>
+    <div className="flex h-full items-center justify-center">
+      <Form method="post" noValidate className="flex w-64 flex-col gap-6">
+        <FormField error={actionData?.errors?.email} label="Email Address">
+          <Input
+            autoComplete="email"
+            type="email"
+            name="email"
+            aria-invalid={actionData?.errors?.email ? true : undefined}
+            aria-describedby="email-error"
+            ref={emailRef}
+          />
+        </FormField>
+        <FormField
+          error={actionData?.errors?.password}
+          hint="Must have at least 6 characters."
+          label="Password"
+        >
+          <Input
+            type="password"
+            name="password"
+            autoComplete="new-password"
+            aria-invalid={actionData?.errors?.password ? true : undefined}
+            aria-describedby="password-error"
+            ref={passwordRef}
+          />
+        </FormField>
+
+        <div>
+          <Button type="submit">Sign up</Button>
+        </div>
+        <input type="hidden" name="redirectTo" value={redirectTo} />
+
+        <p>
+          Already have an account?{" "}
+          <Link
+            to={{
+              pathname: "/login",
+              search: searchParams.toString(),
+            }}
+            className="hover:underline"
+          >
+            Log in
+          </Link>
+        </p>
+      </Form>
     </div>
   );
 }

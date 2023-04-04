@@ -1,24 +1,14 @@
 import { useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import type {
-  ActionFunction,
-  LoaderFunction,
-  LinksFunction,
-} from "@remix-run/node";
+import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { requireUserId } from "~/session.server";
 import { deleteBit, getAllBits } from "~/models/bit.server";
 import type { Bit as BitType } from "~/models/bit.server";
-import styles from "~/styles/index.css";
-import { Bit, links as bitLinks } from "~/components/Bit";
+import { Bit } from "~/components/Bit";
 import { createBit } from "~/models/bit.server";
 import { getUserId } from "~/session.server";
-import { BitForm, links as bitFormLinks } from "~/components/BitForm";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-  ...bitFormLinks(),
-  ...bitLinks(),
-];
+import { BitForm } from "~/components/BitForm";
+import { PageContainer } from "~/components/PageContainer";
 
 interface LoaderData {
   bits: BitType[] | null;
@@ -68,16 +58,16 @@ export default function Index() {
   const data = useLoaderData<typeof loader>() as LoaderData;
 
   return (
-    <main className="index-page">
+    <PageContainer>
       <BitForm clearOnSubmit method="post" />
 
-      <div className="bits-list">
+      <div className="mt-8 flex flex-col gap-8 md:mt-16 lg:mt-24">
         {data.bits?.length ? (
           data.bits.map((bit) => <Bit bit={bit} key={bit.id} />)
         ) : (
           <p>No bits yet!</p>
         )}
       </div>
-    </main>
+    </PageContainer>
   );
 }

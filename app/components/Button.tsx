@@ -1,10 +1,6 @@
 import type { AriaButtonProps } from "react-aria";
-import { mergeProps, useButton } from "react-aria";
-import type { LinksFunction } from "@remix-run/node";
-import styles from "./Button.css";
+import { useButton } from "react-aria";
 import { forwardRef, useRef } from "react";
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 interface ButtonProps
   extends Pick<React.ComponentPropsWithoutRef<"button">, "className">,
@@ -13,17 +9,24 @@ interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ noStyling, ...props }, forwardedRef) => {
-    const mergedProps = mergeProps(
-      { className: noStyling ? "" : "button" },
-      props
-    );
+  ({ className = "", noStyling = false, ...props }, forwardedRef) => {
     const fallbackRef = useRef<HTMLButtonElement>(null);
     const ref =
       (forwardedRef as React.RefObject<HTMLButtonElement>) ?? fallbackRef;
-    const { buttonProps } = useButton(mergedProps, ref);
+    const { buttonProps } = useButton(props, ref);
 
-    return <button {...mergedProps} {...buttonProps} ref={ref} />;
+    return (
+      <button
+        {...props}
+        {...buttonProps}
+        ref={ref}
+        className={
+          noStyling
+            ? className
+            : `cursor-pointer rounded-md border-none bg-puerto-rico-600 py-2 px-5 text-sm font-medium text-white ring-puerto-rico-400 ring-offset-1 hover:bg-puerto-rico-700 focus:outline-none focus:ring-2 active:bg-puerto-rico-800 ${className}`
+        }
+      />
+    );
   }
 );
 

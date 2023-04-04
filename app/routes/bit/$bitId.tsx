@@ -1,24 +1,15 @@
-import {
-  ActionFunction,
-  LinksFunction,
-  LoaderArgs,
-  redirect,
-} from "@remix-run/node";
+import type { ActionFunction, LoaderArgs } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import type { Bit as BitType } from "~/models/bit.server";
 import { deleteBit } from "~/models/bit.server";
 import { requireUserId } from "~/session.server";
-import { Bit, links as bitLinks } from "~/components/Bit";
+import { Bit } from "~/components/Bit";
 import invariant from "tiny-invariant";
 import { getBit } from "~/models/bit.server";
-import styles from "~/styles/bit.css";
 import { getUserId } from "~/session.server";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-  ...bitLinks(),
-];
+import { PageContainer } from "~/components/PageContainer";
 
 type LoaderData = {
   bit: BitType;
@@ -55,8 +46,8 @@ export default function ViewBitPage() {
   const data = useLoaderData<typeof loader>() as LoaderData;
 
   return (
-    <div className="bit-page">
+    <PageContainer>
       <Bit bit={data.bit} />
-    </div>
+    </PageContainer>
   );
 }

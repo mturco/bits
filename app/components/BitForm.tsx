@@ -1,13 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Form, useActionData, useSubmit } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
-import styles from "./BitForm.css";
-import { Button, links as buttonLinks } from "./Button";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-  ...buttonLinks(),
-];
+import { Button } from "./Button";
 
 interface BitFormProps {
   action?: string;
@@ -24,7 +17,6 @@ export const BitForm: React.FC<BitFormProps> = ({
   initialContent = "",
 }) => {
   const actionData = useActionData();
-  const [dirty, setDirty] = useState(false);
   const [content, setContent] = useState(initialContent);
 
   const form = useRef<HTMLFormElement>(null);
@@ -55,7 +47,6 @@ export const BitForm: React.FC<BitFormProps> = ({
 
   function handleChange(evt: React.ChangeEvent<HTMLTextAreaElement>) {
     setContent(evt.target.value);
-    setDirty(evt.target.value.length > 0);
   }
 
   function handleKeyDown(evt: React.KeyboardEvent<HTMLTextAreaElement>) {
@@ -71,12 +62,12 @@ export const BitForm: React.FC<BitFormProps> = ({
       action={action}
       method={method}
       ref={form}
-      className="bit-form"
+      className="flex flex-col"
       onSubmit={maybeClear}
     >
       <textarea
         autoFocus
-        className={dirty ? "dirty" : ""}
+        className="resize-none rounded-lg py-4 px-5 text-sm ring-2 ring-inset ring-gray-300 focus:bg-puerto-rico-50 focus:outline-none focus:ring-puerto-rico-600 focus:placeholder:text-puerto-rico-600"
         name="content"
         onChange={handleChange}
         onKeyDown={handleKeyDown}
@@ -88,7 +79,9 @@ export const BitForm: React.FC<BitFormProps> = ({
       {actionData?.errors?.content && (
         <p className="form-error">{actionData.errors.content}</p>
       )}
-      <Button type="submit">Save</Button>
+      <Button type="submit" className="ml-auto mt-2">
+        Save
+      </Button>
     </Form>
   );
 };

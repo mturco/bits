@@ -1,0 +1,119 @@
+.md-content {
+  word-wrap: break-word;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.md-content p {
+  margin: 1em 0;
+}
+
+.md-content :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: bold;
+}
+
+.md-content :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-top: 1rem;
+}
+
+.md-content h1 {
+  font-size: 2em;
+  margin: 1em 0 0.75em;
+}
+
+.md-content h2 {
+  font-size: 1.5em;
+  margin: 1em 0 0.5em;
+}
+
+.md-content h3 {
+  font-size: 1.25em;
+  margin: 1.25em 0 0.75em;
+}
+
+.md-content h4 {
+  font-size: 1.125em;
+  margin: 1.5em 0 0.75em;
+}
+
+.md-content h5,
+.md-content h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 2em 0 1em;
+}
+
+.md-content h5 {
+  font-size: 0.875em;
+}
+
+.md-content h6 {
+  font-size: 0.8125em;
+}
+
+.md-content table {
+  border-collapse: collapse;
+  margin: 0 1rem;
+}
+
+.md-content thead {
+  border-bottom: 2px solid rgba(0 0 0 / 0.15);
+}
+
+.md-content :is(th, td) {
+  text-align: left;
+  padding: 0.25rem 1rem;
+}
+
+.md-content th {
+  color: rgba(0 0 0 / 0.6);
+}
+
+.md-content [align="center"] {
+  text-align: center;
+}
+
+.md-content [align="right"] {
+  text-align: right;
+}
+
+.md-content td {
+  border-top: 1px solid rgba(0 0 0 / 0.15);
+}
+
+.md-content :is(th, td):first-child {
+  padding-left: 0;
+}
+
+.md-content :is(th, td):last-child {
+  padding-right: 0;
+}
+
+.md-content :is(ol, ul) {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.md-content ol {
+  list-style-type: decimal;
+}
+
+.md-content ul {
+  list-style-type: disc;
+}
+
+.md-content li {
+  margin-bottom: 0.5em;
+}
+
+.md-content a:hover {
+  text-decoration: underline;
+}
+
+.md-content pre {
+  margin: 1rem 0;
+  padding: 1rem;
+  font-size: 0.8125rem;
+  background-color: rgba(0 0 0 / 0.05);
+  border-radius: 5px;
+}

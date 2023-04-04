@@ -1,11 +1,8 @@
-import type { LinksFunction } from "@remix-run/node";
-import { Link, useSubmit } from "@remix-run/react";
+import { useSubmit } from "@remix-run/react";
 import { parseISO, format, formatDistanceToNowStrict } from "date-fns";
 import Markdown from "marked-react";
 import type { Bit as BitType } from "~/models/bit.server";
-import styles from "./Bit.css";
-
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+import { Link } from "./Link";
 
 interface BitProps {
   bit: BitType;
@@ -23,31 +20,38 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
   }
 
   return (
-    <article className="bit-container" key={bit.id}>
-      <div className="bit-actions">
-        <time
-          className="bit-created-at"
-          dateTime={bit.created_at}
-          title={format(parseISO(bit.created_at), "PPpp")}
+    <article key={bit.id}>
+      <div className="mb-0.5 flex items-center gap-4">
+        <Link
+          className="mr-auto text-sm text-gray-500 hover:underline"
+          to={`/bit/${bit.id}`}
         >
-          {formatDistanceToNowStrict(parseISO(bit.created_at), {
-            addSuffix: true,
-          })}
-        </time>
-
-        <Link className="button" to={`/bit/${bit.id}`}>
-          Link
+          <time
+            dateTime={bit.created_at}
+            title={format(parseISO(bit.created_at), "PPpp")}
+          >
+            {formatDistanceToNowStrict(parseISO(bit.created_at), {
+              addSuffix: true,
+            })}
+          </time>
         </Link>
 
-        <Link className="button" to={`/bit/${bit.id}/edit`}>
+        <Link
+          className="text-sm font-medium hover:underline"
+          to={`/bit/${bit.id}/edit`}
+        >
           Edit
         </Link>
 
-        <button type="button" onClick={handleDelete}>
+        <button
+          className="text-sm font-medium hover:underline"
+          type="button"
+          onClick={handleDelete}
+        >
           Delete
         </button>
       </div>
-      <div className="bit-content">
+      <div className="md-content rounded-lg border border-gray-200 px-5">
         <Markdown breaks gfm value={bit.content} />
       </div>
     </article>

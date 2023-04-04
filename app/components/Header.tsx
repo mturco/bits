@@ -1,15 +1,9 @@
-import type { LinksFunction } from "@remix-run/node";
-import { Link, useSubmit } from "@remix-run/react";
+import { useSubmit } from "@remix-run/react";
 import { useOptionalUser } from "~/utils";
 import { UserMenuButton } from "./UserMenuButton";
 import { Item, Section } from "react-stately";
-import { Search, links as searchLinks } from "./Search";
-import styles from "./Header.css";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-  ...searchLinks(),
-];
+import { Search } from "./Search";
+import { Link } from "./Link";
 
 interface HeaderProps {}
 
@@ -27,8 +21,8 @@ export const Header: React.FC<HeaderProps> = () => {
   }
 
   return (
-    <header className="header">
-      <Link to="/" className="app-name">
+    <header className="sticky top-0 grid h-16 grid-cols-header items-center justify-between gap-4 border-t-4 border-puerto-rico-600 bg-white px-4 text-sm">
+      <Link to="/" className="mr-auto font-mono text-xl font-bold">
         Bits
       </Link>
       {user && (

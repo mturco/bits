@@ -11,7 +11,8 @@ import {
 import modernNormalize from "modern-normalize/modern-normalize.css";
 import globalStyles from "~/styles/global.css";
 import tailwind from "~/tailwind.css";
-import { Header, links as headerLinks } from "~/components/Header";
+import markdown from "~/styles/markdown.css";
+import { Header } from "~/components/Header";
 
 import { getUser } from "./session.server";
 
@@ -23,7 +24,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: modernNormalize },
   { rel: "stylesheet", href: tailwind },
   { rel: "stylesheet", href: globalStyles },
-  ...headerLinks(),
+  { rel: "stylesheet", href: markdown },
 ];
 
 export async function loader({ request }: LoaderArgs) {
@@ -41,9 +42,9 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="flex flex-col">
         <Header />
-        <div className="outlet">
+        <div className="flex-1 p-4">
           <Outlet />
         </div>
         <ScrollRestoration />

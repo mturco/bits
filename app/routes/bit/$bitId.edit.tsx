@@ -1,8 +1,4 @@
-import type {
-  ActionFunction,
-  LinksFunction,
-  LoaderArgs,
-} from "@remix-run/node";
+import type { ActionFunction, LoaderArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
@@ -12,14 +8,9 @@ import { deleteBit } from "~/models/bit.server";
 import { requireUserId } from "~/session.server";
 import invariant from "tiny-invariant";
 import { getBit } from "~/models/bit.server";
-import styles from "~/styles/edit.css";
 import { getUserId } from "~/session.server";
-import { BitForm, links as bitFormLinks } from "~/components/BitForm";
-
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: styles },
-  ...bitFormLinks(),
-];
+import { BitForm } from "~/components/BitForm";
+import { PageContainer } from "~/components/PageContainer";
 
 type LoaderData = {
   bit: BitType;
@@ -47,7 +38,7 @@ export const action: ActionFunction = async ({ request, params }) => {
       const content = formData.get("content") as string | null;
       if (bitId && content) {
         await updateBit({ id: bitId, content, profile_id: userId });
-        // return redirect(`/bit/${bitId}`);
+        return redirect(`/bit/${bitId}`);
       }
     }
 
@@ -69,8 +60,8 @@ export default function ViewBitPage() {
   const data = useLoaderData<typeof loader>() as LoaderData;
 
   return (
-    <div className="edit-bit-page">
+    <PageContainer>
       <BitForm method="put" initialContent={data.bit.content} />
-    </div>
+    </PageContainer>
   );
 }
