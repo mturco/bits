@@ -1,4 +1,4 @@
-import { useSubmit } from "@remix-run/react";
+import { Link as RemixLink, useSubmit } from "@remix-run/react";
 import { parseISO, format, formatDistanceToNowStrict } from "date-fns";
 import Markdown from "marked-react";
 import type { Bit as BitType } from "~/models/bit.server";
@@ -22,7 +22,7 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
   return (
     <article key={bit.id}>
       <div className="mb-0.5 flex items-center gap-4">
-        <Link
+        <RemixLink
           className="mr-auto text-sm text-gray-500 hover:underline"
           to={`/bit/${bit.id}`}
         >
@@ -34,7 +34,7 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
               addSuffix: true,
             })}
           </time>
-        </Link>
+        </RemixLink>
 
         <Link
           className="text-sm font-medium hover:underline"
@@ -44,7 +44,7 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
         </Link>
 
         <button
-          className="text-sm font-medium hover:underline"
+          className="text-sm font-medium text-puerto-rico-600 hover:underline"
           type="button"
           onClick={handleDelete}
         >
