@@ -57,7 +57,7 @@
 }
 
 .md-content thead {
-  border-bottom: 2px solid rgba(0 0 0 / 0.15);
+  @apply border-b-2 border-b-gray-300;
 }
 
 .md-content :is(th, td) {
@@ -66,7 +66,7 @@
 }
 
 .md-content th {
-  color: rgba(0 0 0 / 0.6);
+  @apply text-gray-500;
 }
 
 .md-content [align="center"] {
@@ -78,7 +78,7 @@
 }
 
 .md-content td {
-  border-top: 1px solid rgba(0 0 0 / 0.15);
+  @apply border-t border-t-gray-300;
 }
 
 .md-content :is(th, td):first-child {
@@ -106,14 +106,17 @@
   margin-bottom: 0.5em;
 }
 
+.md-content a {
+  @apply text-puerto-rico-600;
+}
+
 .md-content a:hover {
   text-decoration: underline;
 }
 
 .md-content pre {
+  @apply rounded-md bg-gray-100;
   margin: 1rem 0;
   padding: 1rem;
   font-size: 0.8125rem;
-  background-color: rgba(0 0 0 / 0.05);
-  border-radius: 5px;
 }
