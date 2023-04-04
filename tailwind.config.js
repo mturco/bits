@@ -18,7 +18,7 @@ module.exports = {
           950: "#13151B",
         },
       },
-      width: {
+      maxWidth: {
         page: "var(--page-width)",
       },
       gridTemplateColumns: {
