@@ -60,7 +60,7 @@ export const Search: React.FC<SearchProps> = (props) => {
       </div>
       {state.value.length > 0 ? (
         <Overlay>
-          <div className="fixed inset-0 top-16 z-10 overflow-auto bg-white px-4 py-16">
+          <div className="fixed inset-0 top-16 z-10 overflow-auto bg-ayu-50 px-4 py-16 dark:bg-ayu-900">
             <div
               className="mx-auto flex flex-col gap-8"
               style={{ maxWidth: "var(--page-width)" }}
