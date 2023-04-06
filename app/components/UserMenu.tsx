@@ -40,7 +40,7 @@ export function UserMenu({ user }: UserMenuProps) {
       <Popover>
         <Menu
           onAction={handleAction}
-          className="shadow-xs min-w-[200px] rounded-md bg-white pt-1 pb-1 focus:outline-none dark:bg-ayu-900"
+          className="min-w-[200px] rounded-md bg-white pt-1 pb-1 shadow-lg focus:outline-none dark:bg-ayu-900"
         >
           <UserMenuSection>
             <UserMenuHeader>{user.email}</UserMenuHeader>
