@@ -113,11 +113,9 @@ export default function Login() {
         </FormField>
 
         <div>
-          <label className="block">
-            <Checkbox name="remember" /> Remember me
-          </label>
+          <Checkbox name="remember" label="Remember me" />
 
-          <Button type="submit" className="mt-1">
+          <Button type="submit" className="mt-2">
             Log in
           </Button>
         </div>

@@ -9,7 +9,7 @@ import type { Bit as BitType } from "~/models/bit.server";
 import { Bit } from "./Bit";
 import Icon from "@mdi/react";
 import { mdiClose, mdiMagnify } from "@mdi/js";
-import { Button } from "./Button";
+import { Button } from "react-aria-components";
 
 interface SearchProps extends AriaSearchFieldProps {}
 
@@ -50,7 +50,6 @@ export const Search: React.FC<SearchProps> = (props) => {
         {state.value && (
           <Button
             aria-label="Clear search"
-            noStyling
             className="absolute top-1/2 right-4 -translate-y-1/2 text-ayu-500"
             {...clearButtonProps}
           >
