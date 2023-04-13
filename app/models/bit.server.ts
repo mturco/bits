@@ -1,10 +1,12 @@
 import { supabase } from "./user.server";
+import { formatISO } from "date-fns";
 
 export type Bit = {
   id: string;
   created_at: string;
   content: string;
   profile_id: string;
+  updated_at: string;
 };
 
 export async function getAllBits(
@@ -12,8 +14,8 @@ export async function getAllBits(
 ): Promise<Bit[] | null> {
   const { data } = await supabase
     .from("bits")
-    .select("id, created_at, content, profile_id")
-    .order("created_at", { ascending: false })
+    .select("id, created_at, content, profile_id, updated_at")
+    .order("updated_at", { ascending: false })
     .eq("profile_id", userId);
 
   return data;
@@ -44,7 +46,7 @@ export async function updateBit({
 }: Pick<Bit, "id" | "content" | "profile_id">) {
   const { data, error } = await supabase
     .from("bits")
-    .update({ content })
+    .update({ content, updated_at: formatISO(new Date()) })
     .match({ id, profile_id })
     .select()
     .single();
@@ -79,7 +81,7 @@ export async function getBit({
 }: Pick<Bit, "id" | "profile_id">): Promise<Bit | null> {
   const { data, error } = await supabase
     .from("bits")
-    .select("id, created_at, content, profile_id")
+    .select("id, created_at, content, profile_id, updated_at")
     .match({ id, profile_id })
     .single();
 
@@ -99,7 +101,7 @@ export async function getBitsMatching(
       search_query: query.toLowerCase(),
       user_id: userId,
     })
-    .order("created_at", { ascending: false });
+    .order("updated_at", { ascending: false });
 
   if (error) {
     console.error(error);

@@ -27,10 +27,13 @@ export const Bit: React.FC<BitProps> = ({ bit }) => {
           to={`/bit/${bit.id}`}
         >
           <time
-            dateTime={bit.created_at}
-            title={format(parseISO(bit.created_at), "PPpp")}
+            dateTime={bit.updated_at}
+            title={`Updated ${format(
+              parseISO(bit.updated_at),
+              "PPpp"
+            )}\nCreated ${format(parseISO(bit.created_at), "PPpp")}`}
           >
-            {formatDistanceToNowStrict(parseISO(bit.created_at), {
+            {formatDistanceToNowStrict(parseISO(bit.updated_at), {
               addSuffix: true,
             })}
           </time>
