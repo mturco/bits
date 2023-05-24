@@ -12,7 +12,7 @@ import { Link } from "~/components/Link";
 
 export const meta: MetaFunction = () => {
   return {
-    title: "Sign Up",
+    title: "Sign Up | Bits",
   };
 };
 

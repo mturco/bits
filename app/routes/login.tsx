@@ -12,7 +12,7 @@ import { Link } from "~/components/Link";
 import { Checkbox } from "~/components/Checkbox";
 
 export const meta: MetaFunction = () => ({
-  title: "Login",
+  title: "Login | Bits",
 });
 
 interface ActionData {

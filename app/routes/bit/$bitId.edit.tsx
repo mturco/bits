@@ -1,4 +1,4 @@
-import type { ActionFunction, LoaderArgs } from "@remix-run/node";
+import type { ActionFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
@@ -11,6 +11,10 @@ import { getBit } from "~/models/bit.server";
 import { getUserId } from "~/session.server";
 import { BitForm } from "~/components/BitForm";
 import { PageContainer } from "~/components/PageContainer";
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => ({
+  title: `Editing "${data.bit.content.split("\n")[0]}" | Bits`,
+});
 
 type LoaderData = {
   bit: BitType;
